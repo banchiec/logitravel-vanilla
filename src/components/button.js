@@ -2,7 +2,8 @@ export const Button = ({ id, type = "button", children, className, onClick }) =>
   const button = document.createElement("button");
   if (id) button.id = id;
   button.type = type;
-  if (className) button.className = className;
+  if (className) button.className = `btn ${className}`;
+  else button.className = 'btn'
   if (typeof onClick === "function") button.addEventListener("click", onClick);
 
   if (typeof children === "string") {
