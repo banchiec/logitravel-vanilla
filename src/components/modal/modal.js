@@ -31,12 +31,10 @@ export const Modal = ({ handleClose, addItem }) => {
   const input = container.querySelector("input");
   const cancelButton = container.querySelector("button[type='button']");
 
-  // Actualiza inputValue al escribir
   input.addEventListener("input", e => {
     inputValue = e.target.value;
   });
 
-  // Maneja submit del formulario
   form.addEventListener("submit", e => {
     e.preventDefault();
     const trimmed = inputValue.trim();
@@ -48,7 +46,6 @@ export const Modal = ({ handleClose, addItem }) => {
     }
   });
 
-  // Maneja click en cancelar
   cancelButton.addEventListener("click", () => {
     handleClose();
   });

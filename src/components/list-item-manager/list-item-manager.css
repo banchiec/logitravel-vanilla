@@ -1,7 +1,6 @@
 .logitravel-options{
   background: white;
   width: 900px;
-  /*height: 577px;*/
   border-radius: 20px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   padding: 50px;
@@ -34,7 +33,7 @@
 }
 
 .logitravel__list-item.selected {
-  background-color: #324bff; /* azul claro, cámbialo si quieres */
+  background-color: #324bff;
   color: #fff;
 }
 
@@ -53,6 +52,6 @@
 }
 
 .logitravel__list-item.selected {
-  background-color: #324bff; /* azul claro, cámbialo si quieres */
+  background-color: #324bff; 
   color: #fff;
 }

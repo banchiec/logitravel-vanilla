@@ -5,7 +5,6 @@ export const Button = ({ id, type = "button", children, className, onClick }) =>
   if (className) button.className = className;
   if (typeof onClick === "function") button.addEventListener("click", onClick);
 
-  // children puede ser texto o un nodo DOM
   if (typeof children === "string") {
     button.textContent = children;
   } else if (children instanceof Node) {
