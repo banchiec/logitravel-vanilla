@@ -21,8 +21,6 @@ export const ListItemManager = ({
   const description = document.createElement("p");
   description.textContent = LIST_ITEM.description;
 
-  console.log(items)
-
   const listContainer = document.createElement("div");
   listContainer.appendChild(ListItem({ items, selectedItems, handleToggleSelected }));
 
