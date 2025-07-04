@@ -1,4 +1,4 @@
-export const ListItem = ({ items = [], selectedItems = [], handleToggleSelected }) => {
+export const List = ({ items = [], selectedItems = [], handleToggleSelected }) => {
   const ul = document.createElement("ul");
   ul.id = "textList";
   ul.className = "list";

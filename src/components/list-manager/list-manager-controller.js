@@ -1,14 +1,15 @@
-import { createListManagerView } from '../../components/list-manager/create-list-manager-view.js';
-import { openModal } from '../../components/modal/modal-controller.js';
-import useListManager from '../../hooks/useListManager.js';
+import { createListManagerView } from "./create-list-manager-view.js";
+import { openModal } from "../modal/modal-controller.js";
+import useListManager from "../../hooks/useListManager.js";
 
-export default function ListManagerView() {
+export function ListManagerController() {
   let selectedItems = [];
-  const container = document.createElement('div');
+  const container = document.createElement("div");
 
-  let listManager;
-  const render = () => {
-    container.innerHTML = '';
+  const listManager = useListManager([], render);
+
+  function render() {
+    container.innerHTML = "";
 
     const listView = createListManagerView({
       items: listManager.getItems(),
@@ -41,9 +42,8 @@ export default function ListManagerView() {
     });
 
     container.appendChild(listView);
-  };
+  }
 
-  listManager = useListManager([], render);
   render();
 
   return container;

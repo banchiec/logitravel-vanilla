@@ -1,6 +1,6 @@
 import { ACTIONS, LIST_ITEM } from "../../constants/index.js";
 import { Button } from "../button.js";
-import { ListItem } from "../listItem.js";
+import { List} from "../list.js";
 import './list-manager.css'
 
 export const ListManager = ({
@@ -22,7 +22,7 @@ export const ListManager = ({
   description.textContent = LIST_ITEM.description;
 
   const listContainer = document.createElement("div");
-  listContainer.appendChild(ListItem({ items, selectedItems, handleToggleSelected }));
+  listContainer.appendChild(List({ items, selectedItems, handleToggleSelected }));
 
   const buttonsDiv = document.createElement("div");
   buttonsDiv.className = "logitravel-options-buttons";

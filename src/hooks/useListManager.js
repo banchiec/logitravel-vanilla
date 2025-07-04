@@ -57,4 +57,5 @@ const useListManager = (initialItems = [], onChange) => {
     handleUndo,
   };
 };
-export default useListManager
+
+export default useListManager;

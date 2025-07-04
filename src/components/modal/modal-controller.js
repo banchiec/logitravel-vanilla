@@ -1,7 +1,7 @@
 import { createModalView } from "./create-modal-view";
 
 export function openModal({ onSubmit, onClose }) {
-  const { container, dialog, input } = createModalView({
+  const { container, dialog } = createModalView({
     onSubmit: (value) => {
       if (value) {
         onSubmit(value);
