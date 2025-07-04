@@ -3,7 +3,7 @@ import { Button } from "../button.js";
 import { ListItem } from "../listItem.js";
 import './list-manager.css'
 
-export const ListItemManager = ({
+export const ListManager = ({
   handleOpenModal,
   items,
   onDelete,

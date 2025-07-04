@@ -2,7 +2,6 @@ export const ACTIONS = {
   add: 'Add',
   save: 'Save',
   cancel: 'Cancel',
-  add_items: 'Add item to list',
   delete: 'delete'
 }
 
@@ -12,5 +11,6 @@ export const LIST_ITEM = {
 }
 
 export const MODAL = { 
-  placeholder: 'Type something...'
+  placeholder: 'Type something...',
+  add_items: 'Add item to list',
 }

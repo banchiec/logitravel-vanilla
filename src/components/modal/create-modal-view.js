@@ -1,3 +1,4 @@
+import { ACTIONS, MODAL } from "../../constants";
 import { Button } from "../button";
 import './modal.css'
 
@@ -10,7 +11,7 @@ export function createModalView({ onSubmit, onCancel }) {
 
   const title = document.createElement("h2");
   title.className = "logitravel__title";
-  title.textContent = "Añadir ítem";
+  title.textContent = MODAL.add_items;
 
   const form = document.createElement("form");
   form.className = "logitravel__modal-form";
@@ -18,7 +19,7 @@ export function createModalView({ onSubmit, onCancel }) {
 
   const input = document.createElement("input");
   input.className = "logitravel__modal-input";
-  input.placeholder = "Escribe algo";
+  input.placeholder = MODAL.placeholder;
 
   const buttonsWrapper = document.createElement("div");
   buttonsWrapper.className = "logitravel__buttons logitravel__modal-buttons";
@@ -26,13 +27,13 @@ export function createModalView({ onSubmit, onCancel }) {
   const addBtn = Button({
     type: "submit",
     className: "solid",
-    children: "Añadir"
+    children: ACTIONS.add
   });
 
   const cancelBtn = Button({
     type: "button",
     className: "outline",
-    children: "Cancelar",
+    children: ACTIONS.cancel,
     onClick: onCancel
   });
 

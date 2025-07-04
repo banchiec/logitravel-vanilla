@@ -1,4 +1,4 @@
-import { ListItemManager } from '../../components/list-manager/list-manager.js';
+import { ListManager } from '../../components/list-manager/list-manager.js';
 import { openModal } from '../../components/modal/modal-controller.js';
 import useListManager from '../../hooks/useListManager.js';
 
@@ -12,7 +12,7 @@ export default function ListManagerView() {
     const listContainer = document.createElement('div');
     listContainer.className = 'logitravel-options';
 
-    const listItemManagerNode = ListItemManager({
+    const listItemManagerNode = ListManager({
       items: listManager.getItems(),
       selectedItems,
       setSelectedItems: (newSelected) => {
