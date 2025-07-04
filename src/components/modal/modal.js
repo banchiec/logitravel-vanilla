@@ -1,55 +1,70 @@
 import { ACTIONS, MODAL } from '../../constants';
 import './modal.css';
+import '../../style.css'
+import { Button } from '../button';
 
 export const Modal = ({ handleClose, addItem }) => {
   let inputValue = "";
 
-  // Crear el contenedor principal, que contendrá el <dialog>
   const container = document.createElement("div");
   container.className = "logitravel__modal-backdrop";
-  container.setAttribute("role", "presentation"); // porque el dialog tiene el role correcto
-  // No necesitamos aria-modal aquí, lo pone el <dialog> al mostrarse
+  container.setAttribute("role", "presentation");
 
-  // Insertar el <dialog> dentro del contenedor
-  container.innerHTML = `
-    <dialog class="logitravel__modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <h2 id="modal-title" class="logitravel__title">${ACTIONS.add_items}</h2>
-      <form class="logitravel__modal-form" method="dialog">
-        <input
-          type="text"
-          class="logitravel__modal-input"
-          placeholder="${MODAL.placeholder}"
-          value=""
-          aria-label="${MODAL.placeholder}"
-        />
-        <div class="logitravel__buttons logitravel__modal-buttons">
-          <button type="submit" class="btn solid">${ACTIONS.add}</button>
-          <button type="button" class="btn outline">${ACTIONS.cancel}</button>
-        </div>
-      </form>
-    </dialog>
-  `;
+  const dialog = document.createElement("dialog");
+  dialog.className = "logitravel__modal";
+  dialog.setAttribute("role", "dialog");
+  dialog.setAttribute("aria-modal", "true");
+  dialog.setAttribute("aria-labelledby", "modal-title");
+
+  const title = document.createElement("h2");
+  title.id = "modal-title";
+  title.className = "logitravel__title";
+  title.textContent = ACTIONS.add_items;
+
+  const form = document.createElement("form");
+  form.className = "logitravel__modal-form";
+  form.setAttribute("method", "dialog");
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "logitravel__modal-input";
+  input.placeholder = MODAL.placeholder;
+  input.setAttribute("aria-label", MODAL.placeholder);
+
+  const buttonsWrapper = document.createElement("div");
+  buttonsWrapper.className = "logitravel__buttons logitravel__modal-buttons";
+
+  const addButton = Button({
+    type: "submit",
+    className: "solid",
+    children: ACTIONS.add
+  });
+
+  const cancelButton = Button({
+    type:  "button",
+    className: "outline",
+    children: ACTIONS.cancel,
+  });
+
+  buttonsWrapper.appendChild(addButton);
+  buttonsWrapper.appendChild(cancelButton);
+  form.appendChild(input);
+  form.appendChild(buttonsWrapper);
+  dialog.appendChild(title);
+  dialog.appendChild(form);
+  container.appendChild(dialog);
   document.body.appendChild(container);
 
-  const dialog = container.querySelector("dialog");
-  const form = container.querySelector("form");
-  const input = container.querySelector("input");
-  const cancelButton = container.querySelector("button[type='button']");
-
-  // Mostrar el dialog como modal
   if (typeof dialog.showModal === "function") {
     dialog.showModal();
   } else {
-    // fallback para navegadores sin soporte dialog
     dialog.setAttribute("open", "");
   }
 
-  // Actualizar el valor en inputValue al escribir
   input.addEventListener("input", (e) => {
     inputValue = e.target.value;
   });
 
-  // Enviar el formulario
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const trimmed = inputValue.trim();
@@ -61,25 +76,22 @@ export const Modal = ({ handleClose, addItem }) => {
     }
   });
 
-  // Cancelar y cerrar modal
   cancelButton.addEventListener("click", () => {
     closeModal();
   });
 
-  // Función para cerrar el modal y limpiar
+  container.addEventListener("click", (e) => {
+    if (e.target === container) {
+      closeModal();
+    }
+  });
+
   function closeModal() {
     if (typeof dialog.close === "function") {
       dialog.close();
     }
     handleClose();
   }
-
-  // Cerrar modal si se hace click fuera del dialog
-  container.addEventListener("click", (e) => {
-    if (e.target === container) {
-      closeModal();
-    }
-  });
 
   return container;
 };
