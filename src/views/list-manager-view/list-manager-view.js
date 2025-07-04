@@ -1,11 +1,9 @@
-import { ListItemManager } from '../../components/list-item-manager/list-item-manager.js';
-import { Modal } from '../../components/modal/modal.js';
+import { ListItemManager } from '../../components/list-manager/list-manager.js';
+import { openModal } from '../../components/modal/modal-controller.js';
 import useListManager from '../../hooks/useListManager.js';
 
 export default function ListManagerView() {
-  let isModalOpen = false;
   let selectedItems = [];
-
   const container = document.createElement('div');
 
   const render = () => {
@@ -24,33 +22,28 @@ export default function ListManagerView() {
       onDelete: () => {
         listManager.deleteItems(selectedItems);
         selectedItems = [];
+        render(); 
       },
       handleUndo: () => {
         listManager.handleUndo();
         selectedItems = [];
+        render();
       },
       handleOpenModal: () => {
-        isModalOpen = true;
-        render();
+        openModal({
+          onSubmit: (item) => {
+            listManager.addItem(item);
+            render(); 
+          },
+          onClose: () => {
+            render();
+          },
+        });
       },
     });
 
     listContainer.appendChild(listItemManagerNode);
     container.appendChild(listContainer);
-
-    if (isModalOpen) {
-      const modalNode = Modal({
-        handleClose: () => {
-          isModalOpen = false;
-          render();
-        },
-        addItem: (item) => {
-          listManager.addItem(item);
-          isModalOpen = false;
-        },
-      });
-      container.appendChild(modalNode);
-    }
   };
 
   const listManager = useListManager([], render);

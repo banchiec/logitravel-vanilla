@@ -1,7 +1,7 @@
 import { ACTIONS, LIST_ITEM } from "../../constants/index.js";
 import { Button } from "../button.js";
 import { ListItem } from "../listItem.js";
-import './list-item-manager.css'
+import './list-manager.css'
 
 export const ListItemManager = ({
   handleOpenModal,
