@@ -9,12 +9,11 @@
   justify-content: center;
   align-items: start;
   padding-top: 5%;
-  z-index: 999;
 }
 
 .logitravel__modal {
   position: fixed;
-  top: -50%;
+  top: -60%;
   left: 50%;
   transform: translateX(-50%);
   width: 700px;
